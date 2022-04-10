@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+    {% if not items %}
+        No items in the cart!
+    {% endif %}
+    
+    {% for i in items %}
+    <div style="overflow:hidden;">
+        <div style="float:left;">
+            <img src="{{ url_for('static', filename='uploads/') + i.picture}}">
+        </div>
+        <div style="float:right">
+                {{ i.title }} <br/>
+            Tag : {{ i.tag }}<br/><br/>
+            
+            {{ i.description }}<br/><br/>
+            Expires on : {{ i.expiry }}<br/>
+            Available at : {{ i.location }}<br/>
+            Cost : {{ i.cost }}<br/>
+            By : {{ i.owner }}<br/>
+        </div>
+    </div>
+    <hr/><hr/>
+    {% endfor %}
+{% endblock content %}

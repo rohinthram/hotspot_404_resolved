@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+
+{%block content%}
+<div class="intro">
+    <form method="POST" class="forms" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+    
+        <!--{{ form.name.label }}-->
+        {% if form.name.errors %}
+            {{ form.name(style='border-bottom-color:red;') }} 
+            <span style="font-size: small; color: red;">
+                {% for error in form.name.errors %}
+                {%if error%}
+                    {{ error }}
+                {%endif%}
+                {% endfor %}
+            </span>
+        {% else %}
+            {{ form.name(placeholder='Resource Name') }}
+        {% endif %}
+        <br/><br/>
+
+        <!--{{ form.tag.label }}-->
+        {% if form.tag.errors %}
+            {{ form.tag(style='border-color:red;') }} 
+            <span style="font-size: small; color: red;">
+                {% for error in form.tag.errors %}
+                {%if error%}
+                    {{ error }}
+                    {%endif%}
+                {% endfor %}
+            </span>
+        {% else %}
+            {{ form.tag(placeholder='Tag') }}
+        {% endif %}
+        <br/><br/>
+
+        <!--{{ form.description.label }}-->
+        {% if form.description.errors %}
+            {{ form.description(style='border-color:red;') }} 
+            <span style="font-size: small; color: red;">
+                {% for error in form.description.errors %}
+                {%if error%}
+                    {{ error }}
+                    {%endif%}
+                {% endfor %}
+            </span>
+        {% else %}
+            {{ form.description(placeholder='Description') }}
+        {% endif %}
+        <br/><br/>
+
+        {{ form.picture.label }}
+        {% if form.picture.errors %}
+            {{ form.picture(style='border-color:red;') }} 
+            <span style="font-size: small; color: red;">
+                {% for error in form.picture.errors %}
+                {%if error%}
+                    {{ error }}
+                    {%endif%}
+                {% endfor %}
+            </span>
+        {% else %}
+            {{ form.picture() }}
+           
+        {% endif %}
+        <br/><br/>
+        
+
+        <!--{{ form.cost.label }}-->
+        {% if form.cost.errors %}
+            {{ form.cost(style='border-color:red;', class='datepicker') }} 
+            <span style="font-size: small; color: red;">
+                {% for error in form.cost.errors %}
+                {%if error%}
+                    {{ error }}
+                    {%endif%}
+                {% endfor %}
+            </span>
+        {% else %}
+            {{ form.cost() }}
+        {% endif %}
+        <p style="font-size: small;">Cost</p>
+
+        <!--{{ form.location.label }}-->
+        {% if form.location.errors %}
+            {{ form.location(style='border-color:red;') }} 
+            <span style="font-size: small; color: red;">
+                {% for error in form.location.errors %}
+                {%if error%}
+                    {{ error }}
+                    {%endif%}
+                {% endfor %}
+            </span>
+        {% else %}
+            {{ form.location(placeholder='Location') }}
+           
+        {% endif %}
+        <br/><br/>
+        
+        <!--{{ form.expiry.label }}-->
+        {% if form.expiry.errors %}
+            {{ form.expiry(style='border-color:red;', class='datepicker') }} 
+            <span style="font-size: small; color: red;">
+                {% for error in form.expiry.errors %}
+                {%if error%}
+                    {{ error }}
+                    {%endif%}
+                {% endfor %}
+            </span>
+        {% else %}
+            {{ form.expiry(class='datepicker',placeholder='DOB') }}
+        {% endif %}
+        <p style="font-size: small;">Expiry</p>
+        <br/><br/>
+
+        {{ form.submit }}
+        <br/><br/>
+        
+    </form>
+
+    
+</div>
+
+{%endblock content%}

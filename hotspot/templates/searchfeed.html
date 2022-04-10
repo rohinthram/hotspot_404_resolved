@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <form method="get">
+        <input type="text" name="tag" placeholder="tag"/>
+        <input type="submit"/>
+    </form>
+
+    <br/><hr/>
+
+    {% for i in items %}
+        <div style="overflow:hidden;">
+            <div style="float:left;">
+                <img src="{{ url_for('static', filename='uploads/') + i.picture}}">
+            </div>
+            <div style="float:right">
+                    {{ i.title }} <br/>
+                Tag : {{ i.tag }}<br/><br/>
+                
+                {{ i.description }}<br/><br/>
+                Expires on : {{ i.expiry }}<br/>
+                Available at : {{ i.location }}<br/>
+                Cost : {{ i.cost }}<br/>
+                By : {{ i.owner }}<br/>
+
+                <br/><br/>
+                {% if i.id not in cart_items %}
+                    <a href="{{ url_for('add_to_cart', id_=i.id) }}">Add to Cart</a>
+                {% endif %}
+            </div>
+        </div>
+        <hr/><hr/>
+    {% endfor %}
+{% endblock content %}
