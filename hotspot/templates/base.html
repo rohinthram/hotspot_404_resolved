@@ -24,14 +24,14 @@
         {% endblock %}
     </title>
   </head>
-  <body>
-    <nav class="navbar">
+  <body style="background-color: #09102A;"  vlink="#908AFF">
+    <nav class="navbar" >
         <div class="navbar-brand">
-            <a  href="{{ url_for('front')}}">
+            <a  href="{{ url_for('dashboard')}}">
                 <ion-icon name="home-outline" style="font-size: 2em;"></ion-icon>
             </a>
         
-            <a href="{{ url_for('search', tag=1)}}">
+            <a href="{{ url_for('search')}}">
                 <ion-icon name="search-outline" style="font-size: 2em;"></ion-icon>
             </a>
             <a href="{{ url_for('newpost')}}">
@@ -44,9 +44,11 @@
                 <ion-icon name="person-outline" style="font-size: 2em;"></ion-icon>
             </a>
         
-            <a href="{{ url_for('logout')}}">
-                <ion-icon name="log-out-outline" style="font-size: 2em;"></ion-icon>
-            </a>
+            {% if current_user.is_authenticated %}
+                <a href="{{ url_for('logout')}}">
+                    <ion-icon name="log-out-outline" style="font-size: 2em;"></ion-icon>
+                </a>
+            {% endif %}
         
         
         </div>

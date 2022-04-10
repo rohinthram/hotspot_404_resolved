@@ -1,14 +1,22 @@
 {% extends 'base.html' %}
 
 {%block content%}
+<link rel="stylesheet" href="{{url_for('static',filename='newpost.css')}}">
 <div class="intro">
+    <div style="font-size: 50px;font-family:'Courier New', Courier, monospace;color: white;position: fixed;">
+        Post in 
+    </div>
+    <img src="{{url_for('static',filename='images/v111_30.png')}}" style="margin-top: 5%; position: fixed;" width="20%" height="50%">
+    <div class="title">
+        HOTSPOT
+    </div>
     <form method="POST" class="forms" enctype="multipart/form-data">
         {{ form.hidden_tag() }}
     
         <!--{{ form.name.label }}-->
         {% if form.name.errors %}
-            {{ form.name(style='border-bottom-color:red;') }} 
-            <span style="font-size: small; color: red;">
+            {{ form.name(style='border-bottom-color:red;', class='inputbox') }} 
+            <span style="font-size: medium; margin-left:35%; color: red;">
                 {% for error in form.name.errors %}
                 {%if error%}
                     {{ error }}
@@ -16,14 +24,14 @@
                 {% endfor %}
             </span>
         {% else %}
-            {{ form.name(placeholder='Resource Name') }}
+            {{ form.name(placeholder='Resource Name', class='inputbox') }}
         {% endif %}
         <br/><br/>
 
         <!--{{ form.tag.label }}-->
         {% if form.tag.errors %}
-            {{ form.tag(style='border-color:red;') }} 
-            <span style="font-size: small; color: red;">
+            {{ form.tag(style='border-color:red;', class='inputbox') }} 
+            <span style="font-size: medium; margin-left:35%; color: red;">
                 {% for error in form.tag.errors %}
                 {%if error%}
                     {{ error }}
@@ -31,14 +39,14 @@
                 {% endfor %}
             </span>
         {% else %}
-            {{ form.tag(placeholder='Tag') }}
+            {{ form.tag(placeholder='Tag',class='inputbox') }}
         {% endif %}
         <br/><br/>
 
         <!--{{ form.description.label }}-->
         {% if form.description.errors %}
-            {{ form.description(style='border-color:red;') }} 
-            <span style="font-size: small; color: red;">
+            {{ form.description(style='border-color:red;', class='inputbox') }} 
+            <span style="font-size: medium; margin-left:35%; color: red;">
                 {% for error in form.description.errors %}
                 {%if error%}
                     {{ error }}
@@ -46,14 +54,14 @@
                 {% endfor %}
             </span>
         {% else %}
-            {{ form.description(placeholder='Description') }}
+            {{ form.description(placeholder='Description', class='inputbox') }}
         {% endif %}
         <br/><br/>
 
-        {{ form.picture.label }}
+        <!--{{ form.picture.label }}-->
         {% if form.picture.errors %}
-            {{ form.picture(style='border-color:red;') }} 
-            <span style="font-size: small; color: red;">
+            {{ form.picture(style='border-color:red;', class='inputbox') }} 
+            <span style="font-size: medium; margin-left:35%; color: red;">
                 {% for error in form.picture.errors %}
                 {%if error%}
                     {{ error }}
@@ -61,7 +69,7 @@
                 {% endfor %}
             </span>
         {% else %}
-            {{ form.picture() }}
+            {{ form.picture(class='inputbox') }}
            
         {% endif %}
         <br/><br/>
@@ -69,8 +77,8 @@
 
         <!--{{ form.cost.label }}-->
         {% if form.cost.errors %}
-            {{ form.cost(style='border-color:red;', class='datepicker') }} 
-            <span style="font-size: small; color: red;">
+            {{ form.cost(style='border-color:red;', class='datepicker inputbox') }} 
+            <span style="font-size: medium; margin-left:35%; color: red;">
                 {% for error in form.cost.errors %}
                 {%if error%}
                     {{ error }}
@@ -78,14 +86,14 @@
                 {% endfor %}
             </span>
         {% else %}
-            {{ form.cost() }}
+            {{ form.cost(class='inputbox') }}
         {% endif %}
-        <p style="font-size: small;">Cost</p>
+        <p style="font-size: small;margin-left: 35%;color: white;">Cost</p>
 
         <!--{{ form.location.label }}-->
         {% if form.location.errors %}
-            {{ form.location(style='border-color:red;') }} 
-            <span style="font-size: small; color: red;">
+            {{ form.location(style='border-color:red;', class='inputbox') }} 
+            <span style="font-size: medium; margin-left:35%; color: red;">
                 {% for error in form.location.errors %}
                 {%if error%}
                     {{ error }}
@@ -93,15 +101,15 @@
                 {% endfor %}
             </span>
         {% else %}
-            {{ form.location(placeholder='Location') }}
+            {{ form.location(placeholder='Location', class='inputbox') }}
            
         {% endif %}
         <br/><br/>
         
         <!--{{ form.expiry.label }}-->
         {% if form.expiry.errors %}
-            {{ form.expiry(style='border-color:red;', class='datepicker') }} 
-            <span style="font-size: small; color: red;">
+            {{ form.expiry(style='border-color:red;', class='datepicker inputbox') }} 
+            <span style="font-size: medium; margin-left:35%; color: red;">
                 {% for error in form.expiry.errors %}
                 {%if error%}
                     {{ error }}
@@ -109,12 +117,12 @@
                 {% endfor %}
             </span>
         {% else %}
-            {{ form.expiry(class='datepicker',placeholder='DOB') }}
+            {{ form.expiry(class='datepicker inputbox',placeholder='DOB') }}
         {% endif %}
-        <p style="font-size: small;">Expiry</p>
-        <br/><br/>
+        <p style="font-size: medium;margin-left: 35%;color: white;">Expiry</p>
+        
 
-        {{ form.submit }}
+        {{ form.submit(class='submitbutton') }}
         <br/><br/>
         
     </form>

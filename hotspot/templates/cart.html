@@ -1,28 +1,27 @@
 {% extends "base.html" %}
 
-
 {% block content %}
+<link rel="stylesheet" href="{{url_for('static',filename='home.css')}}">
+<div class="grid-container">
 
-    {% if not items %}
-        No items in the cart!
-    {% endif %}
-    
     {% for i in items %}
-    <div style="overflow:hidden;">
-        <div style="float:left;">
-            <img src="{{ url_for('static', filename='uploads/') + i.picture}}">
+        <div class="grid-item">
+            <img src="{{url_for('static', filename='uploads/'+i.picture)}}" width=240px height=332px>
+            <div class="detailsbox">
+                <div class="details">
+                    {{ i.title }} <br/>
+                    Tag : {{ i.tag }}<br/><br/>
+                
+                    {{ i.description }}<br/><br/>
+                    Expires on : {{ i.expiry }}<br/>
+                    Available at : {{ i.location }}<br/>
+                    Cost : {{ i.cost }}<br/>
+                    By : {{ i.owner }}<br/>
+
+                </div>
+                
+            </div>
         </div>
-        <div style="float:right">
-                {{ i.title }} <br/>
-            Tag : {{ i.tag }}<br/><br/>
-            
-            {{ i.description }}<br/><br/>
-            Expires on : {{ i.expiry }}<br/>
-            Available at : {{ i.location }}<br/>
-            Cost : {{ i.cost }}<br/>
-            By : {{ i.owner }}<br/>
-        </div>
-    </div>
-    <hr/><hr/>
-    {% endfor %}
+    {% endfor %}    
+</div>
 {% endblock content %}

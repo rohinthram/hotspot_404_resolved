@@ -55,6 +55,7 @@ class Resource(db.Model):
     picture = db.Column(db.String(40), nullable=False)
     cost = db.Column(db.Integer, nullable=False)
     owner = db.Column(db.String(20), nullable=False)
+    owner_number = db.Column(db.String(10), nullable=False)
     location = db.Column(db.String(20), nullable=False)
     expiry = db.Column(db.String(20), nullable=False)
 

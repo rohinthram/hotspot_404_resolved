@@ -12,7 +12,7 @@ import string
 
 @app.route('/')
 def front():
-    return render_template('front.html')
+    return redirect(url_for('login'))
 
 @app.route('/signup', methods=["GET", "POST"])
 def signup():
@@ -105,7 +105,11 @@ def reset_password(token):
 @app.route('/dashboard')
 @login_required
 def dashboard():
-    return render_template('home.html')
+    posts = Resource.query.all()
+    cart_items = current_user.cart
+    if not cart_items:
+        cart_items = ''
+    return render_template('home.html', items=posts, cart_items=cart_items)
 
 def searchfeed(tag):
     return Resource.query.filter_by(tag=tag).all()
@@ -147,7 +151,8 @@ def newpost():
     
         rsrc = Resource(id=r_id, tag=form.tag.data,
                         title=form.name.data, description=form.description.data, cost=form.cost.data,
-                        owner=current_user.username, location=form.location.data, expiry=str(form.expiry.data),
+                        owner=current_user.username, owner_number=current_user.mobile,
+                        location=form.location.data, expiry=str(form.expiry.data),
                         picture=filename)
 
         db.session.add(rsrc)
@@ -224,7 +229,7 @@ def logout():
         logout_user()
         flash('Successfully Logged Out!', 'success')
     
-    return redirect(url_for('front'))
+    return redirect(url_for('login'))
 
 @app.errorhandler(404)	
 def page_not_found(e):	

@@ -25,7 +25,7 @@ class Sign_up_form(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password', "Password doesn't match")])
 
-    submit = SubmitField('Get In Board')
+    submit = SubmitField('Sign Up!')
 
     def validate_username(self, username):
         user = User.query.filter_by(username=username.data).first()
